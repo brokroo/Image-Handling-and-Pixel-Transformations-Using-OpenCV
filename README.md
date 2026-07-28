@@ -39,47 +39,66 @@ Split the image (boy.jpg) into B, G, R components and display the channels
 ### **Step 1: Read and Display Image**
 ```python
 import cv2
-import matplotlib.pyplot as plt
-img = cv2.imread('vr46.png', cv2.IMREAD_COLOR)
+import numpy as np
+img =cv2.imread('1338658.jpeg',cv2.IMREAD_COLOR)
 img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-plt.imshow(img_rgb, cmap='viridis')  
-plt.title("Original Image")
-plt.axis('off')  
-plt.show()
 ```
-### **Step 2: Draw a Line**
-```python
-line_img = cv2.line(img_rgb, (0, 0), (768, 600), (255, 0, 0), 2)
-plt.imshow(line_img, cmap='viridis')  
-plt.title("Image with Line")
-plt.axis('off')  
-plt.show()
-```
-
 ### **Step 3: Draw a Circle**
 ```python
-circle_img = cv2.circle(img_rgb,(400,300),150,(255,0,0),10)
-plt.imshow(circle_img, cmap='viridis')  
-plt.title("Image with Circle")
-plt.axis('off')  
+import cv2
+import matplotlib.pyplot as plt
+
+img = cv2.imread("messi.png")
+img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+# Circle color (Magenta)
+color = (255, 0, 255)
+
+# Center of the circle (adjust as needed)
+center = (2100, 1450)
+
+# Radius
+radius = 700
+
+# Draw the circle
+cv2.circle(img_rgb, center, radius, color, 5)
+
+plt.figure(figsize=(6,6))
+plt.imshow(img_rgb)
+plt.title("Circle around Messi")
+plt.axis("off")
 plt.show()
 ```
 
 ### **Step 4: Draw a Rectangle**
 ```python
-rectangle_img = cv2.rectangle(img_rgb, (0, 0), (768, 600), (0, 0, 255), 10)
-plt.imshow(rectangle_img, cmap='viridis')  
-plt.title("Image with Rectangle")
-plt.axis('off')  
+rcol = (255,0,255)
+
+cv2.rectangle(img_rgb,
+              (1400,500),
+              (2800,2400),
+              rcol,
+              5)
+
+plt.imshow(img_rgb)
+plt.title("Rectangle around Messi")
+plt.axis("off")
 plt.show()
 ```
 
 ### **Step 5: Add Text**
 ```python
-text_img = cv2.putText(img_rgb, "OpenCV Drawing", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 10)
-plt.imshow(text_img, cmap='viridis')  
+cv2.putText(img_rgb,
+            "Lionel Messi - Ballon d'Or",
+            (800, 2600),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            2,
+            (255,255,255),
+            4)
+
+plt.imshow(img_rgb)
 plt.title("Image with Text")
-plt.axis('off')  
+plt.axis("off")
 plt.show()
 ```
 
@@ -125,10 +144,10 @@ plt.show()
 
 ### **Step 11: Resize Image**
 ```python
-resized_image = cv2.resize(image, (768 // 2, 600 // 2))
-resized_image_rgb = cv2.cvtColor(resized_image, cv2.COLOR_BGR2RGB)
-plt.imshow(resized_image_rgb)
-plt.title("Resized Image (Half Size)")
+res = cv2.resize(crop, None, fx=2, fy=2)
+
+plt.imshow(res)
+plt.title("Resized Image (2x)")
 plt.axis("off")
 plt.show()
 ```
@@ -145,22 +164,14 @@ plt.show()
 
 ### **Step 13: Flip Horizontally**
 ```python
-image = cv2.imread('vr46.png')
-flipped_horizontally = cv2.flip(image, 1)
-flipped_horizontally_rgb = cv2.cvtColor(flipped_horizontally, cv2.COLOR_BGR2RGB)
-plt.imshow(flipped_horizontally_rgb)
+flip = cv2.flip(res, 1)
+
+plt.imshow(flip)
 plt.title("Flipped Horizontally")
 plt.axis("off")
+plt.show()
 ```
 
-### **Step 14: Flip Vertically**
-```python
-flipped_vertically = cv2.flip(image, 0)
-flipped_vertically_rgb = cv2.cvtColor(flipped_vertically, cv2.COLOR_BGR2RGB)
-plt.imshow(flipped_vertically_rgb)
-plt.title("Flipped Vertically")
-plt.axis("off")
-```
 
 ### **Step 15: Save Final Image**
 ```python
